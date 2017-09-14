@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="height=device-height,width=device-width,user-scalable=no" />
+    <link rel="stylesheet" href="css/style_register.css">
+	<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script type="text/javascript">    
+		function login(){
+			window.location="login.html";
+		}
+		</script>
+</head>
+
+<body background="images/Back.jpg">
+
+    <div id="container">
+        <div id="titre">
+        Create Your Account
+        </div>       
+        <form id="regForm" method="post">
+                <input style="background-image: url('images/user.png');background-position: 10px 10px;background-repeat: no-repeat;"type="text" placeholder="Full name" id="username" required>
+                <input style="background-image: url('images/phone.png');background-position: 10px 10px;background-repeat: no-repeat;" type="text" placeholder="Number" id="number" required>				               
+				<input style="background-image: url('images/mail.png');background-position: 10px 10px;background-repeat: no-repeat;" type="email" placeholder="Email" id="email" required>
+                <input style="background-image: url('images/pass.png');background-position: 10px 10px;background-repeat: no-repeat;" type="password" placeholder="Password" id="pwd" required>
+                <input style="background-image: url('images/pass.png');background-position: 10px 10px;background-repeat: no-repeat;" type="password" placeholder="Confirm Password" id="confirm" required>
+                <div id="center">
+                    <button id="btnlogin1">Create account</button>                  
+                </div></form>
+        <div id="center"><a>Already have an account?</a>
+            <button id="btnsignin1" onclick="login()">Sign In</button>
+        </div>
+    </div>
+     <script>
+    $("#form1").submit(function(e){
+        e.preventDefault();
+        $.post(
+            'https://findme2017.000webhostapp.com/findme/register.php',
+            {
+                name : $("#username").val(), 
+                number : $("#number").val(),  
+                password : $("#pwd").val(),
+                email : $("#email").val()                
+            },
+
+            function(data){
+                var arr = $.parseJSON(data);
+                if(!arr.error){                          	          
+                    window.location.replace("login.html");                    					              
+                }                
+                else {
+                    console.log(arr.error_msg);
+                					
+                }
+              
+        
+            }
+         );
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>
+	profile
+</title>
+	<link rel='stylesheet' href='css/vendor/normalize.css'>
+    <link rel='stylesheet' href='css/vendor/fontello.css'>
+    <link rel='stylesheet' href='css/style.css'>
+
+    <script src='js/jquery.js'></script>
+    <script src='js/scriptProfile.js'></script>
+
+    
+
+
+
+</head>
+<body>
+	
+
+
+<div class="profileContainer">
+
+	<div class="profileHeader">
+		<div class="couverture">
+			<form action="index.html">
+			<button class="btnBack" > <i class="icon-left-open-big" style="font-size: 109px;color: #27bcea;"></i> </button>
+			</form>
+			 <div class="ImgContainer">
+			 				<div class="imgC">
+			 				<img src="images/defaultImg.jpg" class="photoProfile" id="ImgPrf">  
+                            <input class="inputImg" id="postImg" type="file" name="image"  accept="image/*" >
+
+                            </div>
+                            <button class="scalO button success round large " id="btn_apl_img"> apply <i class="icon-ok"></i> </button>
+                            
+                        </div>
+
+
+			
+		</div>
+	</div>
+
+	<div class="blockP">
+		<h3 class="subheader" style="margin-left: 10%;"><i class="icon-article-alt"></i> Info</h3>  
+		<hr width="90%" class="lnd"> 
+		<table style="border: none;">
+		<tr>
+		<td><label><i class="icon-user-1"></i> Name</label> </td> <td><label id="lb_name"></label></td>
+		</tr>
+		<tr>
+		<td><label><i class="icon-email"></i> Email</label></td><td> <label id="lb_mail"></label></td>
+	    </tr>
+	    <tr>
+		<td><label><i class="icon-mobile-1"></i> Phone</label></td><td>	<label id="lb_phone"></label></td>
+	    </tr>
+		</table>
+		<button class="icon-edit"> <i class=""></i> Edit </button>
+
+		<div>
+			<table style="border: none;">
+			<tr>
+			<td><label><i class="icon-user-1"></i> Name</label></td><td> <input id="npt_name" type="text" style="width:500px;" placeholder="name ..." required ></td>
+			</tr>
+			<tr>
+			<td><label><i class="icon-email"></i> Email</label>	</td><td><input id="npt_mail" type="email" style="width:500px;" placeholder="mail ...." required>
+		    </tr>
+		    <tr>
+			<td><label><i class="icon-mobile-1"></i> Phone</label></td><td> <input id="npt_phone" type="tel" style="width:500px;" placeholder="phone ... " required pattern="\d{8}"></td>
+		    </tr>
+		</table>
+			<button class="" id="btn_apply_info"> <i class="icon-ok"></i> apply </button>
+
+		</div>
+	</div>
+
+	<div class="blockP">
+		<h3 class="subheader" style="margin-left: 10%;"><i class="icon-lock"></i> Security</h3>  
+		<hr width="90%" class="lnd"> 
+			<form id="passEdit">
+				<input id="acienPass" type="password" placeholder="acien password">
+				<input id="newPass" type="password" placeholder="new password">
+				<button class="" id="btn_pass"> <i class="icon-ok"></i> apply </button>
+			</form>
+		<button class="icon-edit"> <i class=""></i> change password</button>
+	</div>
+
+</div>
+  
+
+
+</body>
+</html>

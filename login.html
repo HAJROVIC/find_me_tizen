@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="height=device-height,width=device-width,user-scalable=no" />
+    <link rel="stylesheet" href="css/style_login.css">
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+   <script type="text/javascript">    
+		function register(){
+			window.location="register.html";
+		}
+		</script>
+		<script type="text/javascript">    
+		function checklogin(){
+			if(localStorage.getItem("logged") === true){
+					window.location="index.html";					
+					}
+		}
+		</script>
+</head>
+
+<body background="images/Back.jpg" onload="checklogin()">
+
+    <div id="container">
+        <div id="titre">
+            FindMe
+        </div>
+        <div id="desc">
+            Let Your Friends Find You
+        </div></br></br></br></br>
+
+                <input style="background-image: url('images/mail.png');background-position: 10px 10px;background-repeat: no-repeat;" type="text" placeholder="Email" id="username" required>
+                <input style="background-image: url('images/pass.png');background-position: 10px 10px;background-repeat: no-repeat;" type="password" placeholder="Password" id="pwd" required>
+
+
+                <div id="center">
+                    <button  id="btnlogin1">Sign in</button>                  
+                </div>
+                <div id="erreurLogin" class="alert-box radius alert" ></div>
+
+                           
+        <div id="center"><a>Don't have an account?</a>
+            <button id="btnsignin1" onclick="register()">Sign Up</button>
+        </div>
+    </div>
+     <script>
+    document.getElementById("erreurLogin").style.display = "none";
+    $("#btnlogin1").click(function(){
+
+        $("#erreurLogin").empty();
+        if($("#username").val()=="" || $("#pwd").val()=="" ){
+            $("#erreurLogin").append("Empty details !"); 
+            document.getElementById("erreurLogin").style.display = "block";
+        }
+
+       else{
+        $.post(
+            'https://findme2017.000webhostapp.com/findme/login.php',
+            {
+                email : $("#username").val(),  
+                password : $("#pwd").val()
+            },
+
+            function(data){
+                var arr = $.parseJSON(data);
+                if(arr["error"] == false){          
+                	localStorage.setItem("user_id", arr.user["id"]);  
+                	localStorage.setItem("user_email", arr.user["email"]);  
+                	localStorage.setItem("user_photo", arr.user["photo"]);  
+                	localStorage.setItem("user_name", arr.user["name"]);   
+                    localStorage.setItem("user_phone", arr.user["phone"]); 
+                    localStorage.setItem("user_pass",$("#pwd").val()); 
+                    localStorage.setItem("logged", true);                	
+                    window.location.replace("index.html");                    					              
+                }                
+                else {
+                    
+                	$("#erreurLogin").append(arr["error_msg"]);		
+                    document.getElementById("erreurLogin").style.display = "block";		
+                }
+              
+        
+            }
+         );
+        }
+    });
+</script>
+</body>
+
+</html>
